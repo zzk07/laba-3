@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товари - Наш Магазин</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Магазин</div>
+            <div class="nav-links">
+                <a href="index.html">Головна</a>
+                <a href="products.html" class="active">Товари</a>
+                <a href="contact.html">Контакти</a>
+            </div>
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <span class="cart-count">0</span>
+                    <button id="cart-btn" title="Кошик">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="products-container">
+        <div class="products-hero">
+            <h1>Наші товари</h1>
+            <p>Ознайомтеся з нашим широким асортиментом якісних товарів</p>
+        </div>
+
+        <div class="products-content">
+            <aside class="filters-sidebar">
+                <div class="filter-section">
+                    <h3>Категорії</h3>
+                    <div class="filter-options">
+                        <label><input type="checkbox" value="electronics"> Електроніка</label>
+                        <label><input type="checkbox" value="clothing"> Одяг</label>
+                        <label><input type="checkbox" value="books"> Книги</label>
+                        <label><input type="checkbox" value="home"> Дім і сад</label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Діапазон цін</h3>
+                    <div class="price-range">
+                        <input type="range" min="0" max="1000" value="500" class="price-slider">
+                        <div class="price-inputs">
+                            <input type="number" placeholder="Мін" class="min-price">
+                            <input type="number" placeholder="Макс" class="max-price">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Рейтинг</h3>
+                    <div class="filter-options">
+                        <label><input type="checkbox" value="4"> 4★ і вище</label>
+                        <label><input type="checkbox" value="3"> 3★ і вище</label>
+                        <label><input type="checkbox" value="2"> 2★ і вище</label>
+                    </div>
+                </div>
+
+                <button class="apply-filters">Застосувати фільтри</button>
+            </aside>
+
+            <div class="products-grid products-list">
+                <div class="products-header">
+                    <div class="products-count">Показано 12 товарів</div>
+                    <div class="sort-options">
+                        <select class="sort-select">
+                            <option value="popular">Найпопулярніші</option>
+                            <option value="price-low">Ціна: від дешевих до дорогих</option>
+                            <option value="price-high">Ціна: від дорогих до дешевих</option>
+                            <option value="rating">Найвищий рейтинг</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>Смартфон</h3>
+                    <p class="price">15,999 ₴</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <button class="add-to-cart">Додати в кошик</button>
+                </div>
+                <div class="product-card">
+                    <h3>Ноутбук</h3>
+                    <p class="price">32,999 ₴</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <button class="add-to-cart">Додати в кошик</button>
+                </div>
+                <div class="product-card">
+                    <h3>Навушники</h3>
+                    <p class="price">4,999 ₴</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <button class="add-to-cart">Додати в кошик</button>
+                </div>
+                <div class="product-card">
+                    <h3>Смарт-годинник</h3>
+                    <p class="price">8,999 ₴</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <button class="add-to-cart">Додати в кошик</button>
+                </div>
+                <div class="product-card">
+                    <h3>Планшет</h3>
+                    <p class="price">12,999 ₴</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <button class="add-to-cart">Додати в кошик</button>
+                </div>
+                <div class="product-card">
+                    <h3>Фотоапарат</h3>
+                    <p class="price">24,999 ₴</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <button class="add-to-cart">Додати в кошик</button>
+                </div>
+                <div class="product-card">
+                    <h3>Ігрова консоль</h3>
+                    <p class="price">18,999 ₴</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <button class="add-to-cart">Додати в кошик</button>
+                </div>
+                <div class="product-card">
+                    <h3>Бездротові навушники</h3>
+                    <p class="price">6,999 ₴</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <button class="add-to-cart">Додати в кошик</button>
+                </div>
+
+                <div class="pagination">
+                    <button class="prev-page"><i class="fas fa-chevron-left"></i></button>
+                    <div class="page-numbers">
+                        <span class="active">1</span>
+                        <span>2</span>
+                        <span>3</span>
+                    </div>
+                    <button class="next-page"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Про нас</h3>
+                <p>Ваш надійний онлайн-магазин якісних товарів.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Швидкі посилання</h3>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="products.html">Товари</a></li>
+                    <li><a href="contact.html">Контакти</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контактна інформація</h3>
+                <p>Email: unhurian.nikolai@chnu.edu.ua</p>
+                <p>Телефон: 0992877929</p>
+                <p>Місто: Chernivtsi</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Магазин. Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <button id="scroll-top" class="scroll-top" style="display:none;">↑</button>
+
+    <script src="products.js"></script>
+    <script>
+    document.getElementById('cart-btn').onclick = function() {
+        window.location.href = 'cart.html';
+    };
+    </script>
+</body>
+</html> 

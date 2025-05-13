@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кошик - Магазин</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Магазин</div>
+            <div class="nav-links">
+                <a href="index.html">Головна</a>
+                <a href="products.html">Товари</a>
+                <!-- <a href="about.html">Про нас</a> -->
+                <a href="contact.html">Контакти</a>
+            </div>
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <span class="cart-count">0</span>
+                    <button id="cart-btn" title="Кошик">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="cart-container">
+        <h1>Ваш кошик</h1>
+        <div id="cart-items"></div>
+        <div class="cart-summary">
+            <p>Загальна сума: <span id="cart-total">0</span> грн</p>
+            <button id="checkout-btn">Оформити замовлення</button>
+        </div>
+        <div class="chart-container" style="width: 80%; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <canvas id="myChart"></canvas>
+        </div>
+    </main>
+
+    <footer>
+        <p>Email: unhurian.nikolai@chnu.edu.ua | Телефон: 0992877929 | Chernivtsi</p>
+        <p>&copy; 2024 Магазин. Всі права захищені.</p>
+    </footer>
+
+    <script>
+    function getCart() {
+        return JSON.parse(localStorage.getItem('cart')) || [];
+    }
+
+    function setCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+        const cart = getCart();
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelectorAll('.cart-count').forEach(el => el.textContent = count);
+    }
+
+    function updateChart() {
+        const cart = getCart();
+        const ctx = document.getElementById('myChart');
+        
+        // Знищуємо попередній графік, якщо він існує
+        if (window.myChart instanceof Chart) {
+            window.myChart.destroy();
+        }
+
+        // Створюємо новий графік тільки якщо є товари
+        if (cart.length > 0) {
+            const labels = cart.map(item => item.name);
+            const data = cart.map(item => item.price * item.quantity);
+
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Ціна товару (грн)',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Ціна (грн)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Ціни товарів у кошику'
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function renderCart() {
+        const cart = getCart();
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p>Кошик порожній.</p>';
+            cartTotal.textContent = '0';
+            updateChart();
+            return;
+        }
+
+        let total = 0;
+        cartItems.innerHTML = cart.map(item => {
+            total += item.price * item.quantity;
+            return `
+                <div class="cart-item">
+                    <div class="cart-item-details">
+                        <h3>${item.name}</h3>
+                        <p>Ціна: ${item.price} грн</p>
+                        <div>
+                            <button onclick="changeQty(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="changeQty(${item.id}, 1)">+</button>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})">Видалити</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        cartTotal.textContent = total;
+        updateChart(); // Оновлюємо графік після оновлення кошика
+    }
+
+    function changeQty(id, delta) {
+        const cart = getCart();
+        const item = cart.find(i => i.id === id);
+        if (!item) return;
+        item.quantity += delta;
+        if (item.quantity < 1) item.quantity = 1;
+        setCart(cart);
+        renderCart();
+        updateCartCount();
+    }
+
+    function removeFromCart(id) {
+        let cart = getCart();
+        cart = cart.filter(i => i.id !== id);
+        setCart(cart);
+        renderCart();
+        updateCartCount();
+    }
+
+    document.getElementById('checkout-btn').onclick = function() {
+        alert('Дякуємо за замовлення!');
+        setCart([]);
+        renderCart();
+        updateCartCount();
+    };
+
+    // Ініціалізація при завантаженні сторінки
+    window.addEventListener('DOMContentLoaded', function() {
+        renderCart();
+        updateCartCount();
+    });
+    </script>
+</body>
+</html> 

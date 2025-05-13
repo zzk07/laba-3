@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти - Магазин</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Магазин</div>
+            <div class="nav-links">
+                <a href="index.html">Головна</a>
+                <a href="products.html">Товари</a>
+                <!-- <a href="about.html">Про нас</a> -->
+                <a href="#" class="active">Контакти</a>
+            </div>
+            <div class="nav-icons">
+                <div class="cart-icon">
+                    <span class="cart-count">0</span>
+                    <button id="cart-btn" title="Кошик">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="contact-container">
+        <section class="hero contact-hero">
+            <h1>Зв'яжіться з нами</h1>
+            <p>Ми завжди раді вам допомогти</p>
+        </section>
+
+        <section class="contact-content">
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Адреса</h3>
+                    <p>Chernivtsi</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>0992877929</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>unhurian.nikolai@chnu.edu.ua</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Графік роботи</h3>
+                    <p>Пн - Пт: 9:00 - 18:00</p>
+                    <p>Сб: 10:00 - 16:00</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Напишіть нам</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ім'я</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Тема</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Повідомлення</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Відправити</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <button id="scroll-top" class="scroll-top">↑</button>
+
+    <footer>
+        <p>&copy; 2024 Магазин. Всі права захищені.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="contact.js"></script>
+    <script>
+    document.getElementById('cart-btn').onclick = function() {
+        window.location.href = 'cart.html';
+    };
+    </script>
+</body>
+</html> 
